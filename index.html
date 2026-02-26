@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sempurnakan Ramadan - Yayasan Pondok Pesantren Ulul Ilmi</title>
+    <!-- Import Fonts: Inter (San-Serif) & Playfair Display (Modern-Serif) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Design System Tokens */
+        :root {
+            --primary-pine: #0F4A2A;
+            --secondary-sage: #4A5D52;
+            --mint-whisper: #F4F7F5;
+            --accent-gold: #F59E0B;
+            --accent-teal: #0D9488;
+            --dark-moss: #19241E;
+            --bg-canvas: #EEF2F0;
+            --success-emerald: #10B981;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-canvas);
+            color: var(--dark-moss);
+            scroll-behavior: smooth;
+        }
+
+        h1,
+        h2,
+        h3,
+        .financial-data {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            /* Ukuran bobot font diatur ke 500 */
+        }
+
+        /* UI Components */
+        .btn-primary {
+            background-color: var(--primary-pine);
+            color: white;
+            height: 44px;
+            padding: 0 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 200ms ease-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--secondary-sage);
+            color: var(--primary-pine);
+            height: 44px;
+            padding: 0 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            background: transparent;
+            transition: all 200ms ease-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--mint-whisper);
+        }
+
+        .card-luxury {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(15, 74, 42, 0.04);
+            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #E5EBE7;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-luxury:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(15, 74, 42, 0.08);
+        }
+
+        /* FAQ Stability Styles */
+        .faq-container {
+            min-height: 450px;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            opacity: 1;
+            padding-top: 1rem;
+        }
+
+        .faq-item.active i {
+            transform: rotate(45deg);
+        }
+
+        /* Custom Styles */
+        .hero-section {
+            background: linear-gradient(135deg, #0F4A2A 0%, #19241E 100%);
+            padding: 48px 0;
+        }
+
+        .footer-bg-text {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12vw;
+            font-weight: 800;
+            color: var(--primary-pine);
+            opacity: 0.03;
+            white-space: nowrap;
+            pointer-events: none;
+            line-height: 0.8;
+            z-index: 0;
+        }
+
+        .dev-badge {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 50;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--mint-whisper);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-indicator {
+            height: 100%;
+            background: var(--accent-gold);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-white border-b border-[#E5EBE7] px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between h-20 items-center">
+            <!-- Brand Logo Updated -->
+            <a href="#" class="flex items-center">
+                <img src="https://ululilmi.sch.id/wp-content/uploads/2026/02/ulul-ilmi-logo-alt-colored.png"
+                    alt="Ulul Ilmi Logo" class="h-12 md:h-12 w-auto object-contain transition-all"
+                    onerror="this.outerHTML='<span class=\'font-bold text-pine\'>ULUL ILMI</span>'">
+            </a>
+
+            <!-- Align Right Menu -->
+            <div class="flex items-center space-x-8">
+                <div class="hidden md:flex space-x-8 text-[14px] font-medium text-[#4A5D52]">
+                    <a href="#about" class="hover:text-[#0F4A2A] transition">Program</a>
+                    <a href="#packages" class="hover:text-[#0F4A2A] transition">Donasi</a>
+                    <a href="#faq" class="hover:text-[#0F4A2A] transition">Bantuan</a>
+                </div>
+                <a href="#packages" class="btn-primary shadow-sm">
+                    Tunaikan Sedekah
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="relative z-10">
+                <div
+                    class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-md mb-6 border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse"></span>
+                    <span class="text-[11px] font-medium uppercase tracking-widest text-white/80">Ramadan Kareem
+                        2026</span>
+                </div>
+                <h1 class="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                    Sempurnakan Ramadan, <br>
+                    <span class="text-[#F59E0B]">Muliakan Yatim</span> & Penghafal Al-Qur'an.
+                </h1>
+                <p class="text-lg text-white/70 mb-10 max-w-xl leading-relaxed">
+                    Berikan dampak nyata bagi 150 santri binaan kami di Jakarta Timur melalui paket ifthar berkualitas
+                    dan bingkisan lebaran.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#packages" class="btn-primary !bg-[#F59E0B] !text-[#0F4A2A] !h-14 px-8 text-base">
+                        Donasi Sekarang
+                    </a>
+                    <a href="#about"
+                        class="btn-secondary !text-white !border-white/20 !h-14 px-8 text-base hover:!bg-white/10">
+                        Pelajari Program
+                    </a>
+                </div>
+            </div>
+            <div class="hidden lg:block relative">
+                <div class="aspect-square bg-[#19241E] rounded-2xl overflow-hidden border border-white/5 shadow-2xl">
+                    <img src="#" alt="Santri Berdoa" class="w-full h-full object-cover opacity-60">
+                </div>
+                <div class="absolute -bottom-6 -left-6 card-luxury p-6 w-64 h-auto">
+                    <p class="text-[11px] font-medium text-[#4A5D52] uppercase mb-2">Total Santri Binaan</p>
+                    <p class="text-2xl font-bold text-[#0F4A2A]">147 Anak</p>
+                    <div class="progress-bar mt-4">
+                        <div class="progress-indicator w-3/4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Social Proof (Quotes) Updated -->
+    <section class="py-16 bg-white border-b border-[#E5EBE7]">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="quote-text text-[#0F4A2A] text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+                "Kami berkomitemen untuk memastikan setiap rupiah yang Anda donasikan memberikan manfaat langsung kepada
+                santri yatim dan penghafal Al-Qur'an di pesantren kami."
+            </p>
+            <div class="mt-6 flex flex-col items-center">
+                <div class="w-10 h-1 border-t-2 border-[#F59E0B] mb-2"></div>
+                <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-[#9CA3AF]">Dewan Pembina
+                    Yayasan</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="about" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-luxury">
+                    <div class="w-12 h-12 bg-[#F4F7F5] rounded-lg flex items-center justify-center text-[#0F4A2A] mb-6">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-[#0F4A2A] mb-3">Pengaruh Nyata</h3>
+                    <p class="text-sm text-[#4A5D52] leading-relaxed">Penyaluran langsung tanpa perantara ke 150 santri
+                        yang menetap di asrama kami di Cipayung.</p>
+                </div>
+                <div class="card-luxury">
+                    <div class="w-12 h-12 bg-[#F4F7F5] rounded-lg flex items-center justify-center text-[#0F4A2A] mb-6">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-[#0F4A2A] mb-3">Kualitas Terbaik</h3>
+                    <p class="text-sm text-[#4A5D52] leading-relaxed">Setiap paket ifthar dan bingkisan dipilih dengan
+                        standar kualitas terbaik untuk memuliakan penerima.</p>
+                </div>
+                <div class="card-luxury">
+                    <div class="w-12 h-12 bg-[#F4F7F5] rounded-lg flex items-center justify-center text-[#0F4A2A] mb-6">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-[#0F4A2A] mb-3">Transparansi Laporan</h3>
+                    <p class="text-sm text-[#4A5D52] leading-relaxed">Laporan penyaluran yang akuntabel dikirimkan
+                        langsung ke WhatsApp pribadi para donatur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Grid -->
+    <section id="packages" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-[#0F4A2A] mb-2">Pilihan Paket Kebaikan</h2>
+                    <p class="text-[#4A5D52]">Semua paket disalurkan langsung untuk memuliakan santri yatim.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Paket 1: Buka Puasa -->
+                <div class="card-luxury">
+                    <span class="text-[11px] font-bold text-[#F59E0B] uppercase tracking-widest mb-2">Harian</span>
+                    <h4 class="text-lg font-bold text-[#0F4A2A] mb-4">Sedekah Buka Puasa</h4>
+                    <div class="space-y-4 flex-grow">
+                        <div class="p-3 bg-[#F4F7F5] rounded-lg border border-[#E5EBE7]">
+                            <p class="text-[10px] uppercase text-[#4A5D52] mb-1">Makan Lengkap</p>
+                            <p class="financial-data font-bold text-[#0F4A2A]">Rp25.000 <span
+                                    class="text-xs font-normal text-[#9CA3AF]">/anak</span></p>
+                        </div>
+                        <div class="p-3 bg-[#F4F7F5] rounded-lg border border-[#E5EBE7]">
+                            <p class="text-[10px] uppercase text-[#4A5D52] mb-1">Takjil Premium</p>
+                            <p class="financial-data font-bold text-[#0F4A2A]">Rp10.000 <span
+                                    class="text-xs font-normal text-[#9CA3AF]">/anak</span></p>
+                        </div>
+                    </div>
+                    <button class="btn-secondary w-full mt-6">Pilih Paket</button>
+                </div>
+
+                <!-- Paket 2: Bingkisan Sembako -->
+                <div class="card-luxury">
+                    <span class="text-[11px] font-bold text-[#F59E0B] uppercase tracking-widest mb-2">Keluarga</span>
+                    <h4 class="text-lg font-bold text-[#0F4A2A] mb-4">Bingkisan Sembako</h4>
+                    <p class="text-sm text-[#4A5D52] mb-6 leading-relaxed flex-grow">
+                        Paket bahan pokok (Beras, Minyak, Gula, dll) untuk stok pangan keluarga santri selama lebaran.
+                    </p>
+                    <div class="mb-6">
+                        <p class="financial-data text-xl font-bold text-[#0F4A2A]">Rp150.000</p>
+                        <p class="text-[10px] text-[#9CA3AF] uppercase">Per Paket Sembako</p>
+                    </div>
+                    <button class="btn-secondary w-full mt-auto">Pilih Paket</button>
+                </div>
+
+                <!-- Paket 3: Bingkisan Lebaran -->
+                <div class="card-luxury !bg-[#0F4A2A] !border-none text-white">
+                    <span class="text-[11px] font-bold text-[#F59E0B] uppercase tracking-widest mb-2">Terpopuler</span>
+                    <h4 class="text-lg font-bold mb-4">Bingkisan Lebaran</h4>
+                    <p class="text-sm text-white/70 mb-6 leading-relaxed flex-grow">
+                        Pakaian muslim baru, perlengkapan shalat, dan uang saku THR untuk keceriaan hari raya santri.
+                    </p>
+                    <div class="mb-6">
+                        <p class="financial-data text-xl font-bold text-[#F59E0B]">Rp335.000</p>
+                        <p class="text-[10px] text-white/50 uppercase">Paket Lengkap Santri</p>
+                    </div>
+                    <button class="btn-primary !bg-[#F59E0B] !text-[#0F4A2A] w-full mt-auto">Pilih Paket</button>
+                </div>
+
+                <!-- Paket 4: Apresiasi Guru -->
+                <div class="card-luxury">
+                    <span class="text-[11px] font-bold text-[#F59E0B] uppercase tracking-widest mb-2">Apresiasi</span>
+                    <h4 class="text-lg font-bold text-[#0F4A2A] mb-4">Bingkisan Guru Ngaji</h4>
+                    <p class="text-sm text-[#4A5D52] mb-6 leading-relaxed flex-grow">
+                        Muliakan asatidzah yang membimbing santri dengan paket bingkisan khusus hari raya.
+                    </p>
+                    <div class="mb-6">
+                        <p class="financial-data text-xl font-bold text-[#0F4A2A]">Rp500.000</p>
+                        <p class="text-[10px] text-[#9CA3AF] uppercase">Per Paket Guru</p>
+                    </div>
+                    <button class="btn-secondary w-full mt-auto">Pilih Paket</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 bg-white/50">
+        <div class="max-w-3xl mx-auto px-6 faq-container">
+            <h2 class="text-2xl font-bold text-[#0F4A2A] text-center mb-12">Informasi Bantuan</h2>
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer h-auto" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-5">
+                        <span class="text-sm md:text-base">Bagaimana cara konfirmasi donasi?</span>
+                        <i class="fas fa-plus text-[10px] text-[#9CA3AF] transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer px-5 pb-5">
+                        <p class="text-sm text-[#4A5D52] leading-relaxed">Setelah transfer, Anda cukup klik tombol
+                            konfirmasi WA yang tersedia di dasbor konfirmasi. Tim kami akan memvalidasi dalam <span
+                                class="text-[#0D9488] font-semibold">1x24 jam</span> dan mengirimkan e-Struk digital.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer h-auto" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-5">
+                        <span class="text-sm md:text-base">Dapatkah saya berdonasi non-tunai?</span>
+                        <i class="fas fa-plus text-[10px] text-[#9CA3AF] transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer px-5 pb-5">
+                        <p class="text-sm text-[#4A5D52] leading-relaxed">Tentu. Kami menerima donasi berupa barang
+                            layak pakai, beras, atau bahan pangan lainnya langsung ke alamat pesantren di Cipayung,
+                            Jakarta Timur.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer h-auto" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-5">
+                        <span class="text-sm md:text-base">Apakah donasi saya bisa diatasnamakan keluarga?</span>
+                        <i class="fas fa-plus text-[10px] text-[#9CA3AF] transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer px-5 pb-5">
+                        <p class="text-sm text-[#4A5D52] leading-relaxed">Bisa. Pada saat konfirmasi, Anda dapat
+                            mencantumkan nama pemberi donasi (Misal: Fulan bin Fulan) untuk didoakan bersama oleh para
+                            santri saat ifthar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Restructured to 2 Columns -->
+    <footer class="bg-white border-t border-[#E5EBE7] pt-20 pb-12 relative overflow-hidden">
+        <div class="footer-bg-text">ULUL ILMI</div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 mb-16">
+                <!-- Column 1: Brand & Desc -->
+                <div>
+                    <img src="https://ululilmi.sch.id/wp-content/uploads/2026/02/ulul-ilmi-logo-alt-colored.png"
+                        alt="Ulul Ilmi Logo" class="h-16 w-auto mb-8 object-contain">
+                    <p class="text-[#4A5D52] text-base max-w-md leading-relaxed mb-8">
+                        Lembaga pendidikan Islam yang berfokus pada pembinaan karakter dan hafalan Al-Qur'an bagi
+                        anak-anak yatim dan dhuafa di wilayah Munjul, Jakarta Timur.
+                    </p>
+                    <div class="flex space-x-5">
+                        <a href="#"
+                            class="w-10 h-10 border border-[#E5EBE7] rounded-lg flex items-center justify-center text-[#4A5D52] hover:bg-[#0F4A2A] hover:text-white transition shadow-sm"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 border border-[#E5EBE7] rounded-lg flex items-center justify-center text-[#4A5D52] hover:bg-[#0F4A2A] hover:text-white transition shadow-sm"><i
+                                class="fab fa-whatsapp"></i></a>
+                        <a href="#"
+                            class="w-10 h-10 border border-[#E5EBE7] rounded-lg flex items-center justify-center text-[#4A5D52] hover:bg-[#0F4A2A] hover:text-white transition shadow-sm"><i
+                                class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Contact & Newsletter -->
+                <div>
+                    <!-- Newsletter -->
+                    <h5 class="text-[11px] font-bold text-[#0F4A2A] uppercase tracking-[0.2em] mb-4">Laporan Penyaluran
+                    </h5>
+                    <p class="text-xs text-[#9CA3AF] mb-4">Dapatkan update penyaluran Ramadan via email mingguan.</p>
+                    <div class="flex flex-col sm:flex-row gap-2 mb-10">
+                        <input type="email" placeholder="Alamat email Anda"
+                            class="flex-grow h-11 px-4 rounded-lg border border-[#E5EBE7] bg-[#F4F7F5] text-sm focus:outline-none focus:border-[#0F4A2A] transition">
+                        <button class="btn-primary !h-11">Berlangganan</button>
+                    </div>
+
+                    <!-- Contact Us -->
+                    <h5 class="text-[11px] font-bold text-[#0F4A2A] uppercase tracking-[0.2em] mb-8">Hubungi Kami</h5>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-map-marker-alt mt-1 text-[#F59E0B]"></i>
+                            <p class="text-[#4A5D52] text-sm leading-relaxed">
+                                Jl. Masjid Al-Akbar No. 22, RT 01/RW 05, Munjul, <br>Cipayung, Jakarta Timur, DKI
+                                Jakarta 13850.
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-envelope text-[#F59E0B]"></i>
+                            <a href="mailto:ululilmijkt@gmail.com"
+                                class="text-[#4A5D52] text-sm hover:text-[#0F4A2A] transition">ululilmijkt@gmail.com</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[#E5EBE7] text-[10px] text-[#9CA3AF] uppercase tracking-widest font-bold">
+                <p>&copy; 2026 Yayasan Ulul Ilmi Jakarta</p>
+                <div class="flex space-x-8 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-[#0F4A2A] transition">Sitemap</a>
+                    <a href="#" class="hover:text-[#0F4A2A] transition">Kebijakan Privasi</a>
+                    <a href="#" class="hover:text-[#0F4A2A] transition">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Development Mode Access -->
+    <!-- <div class="dev-badge group">
+        <button class="bg-[#19241E] text-white p-3 rounded-lg shadow-xl hover:bg-black transition-all flex items-center space-x-3 border border-white/10">
+            <i class="fas fa-terminal text-[10px] text-[#F59E0B]"></i>
+            <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 text-[10px] font-bold uppercase tracking-widest whitespace-nowrap">Dev Console</span>
+        </button>
+        <div class="hidden group-hover:block absolute bottom-16 right-0 bg-white p-5 rounded-xl shadow-2xl border border-[#E5EBE7] w-64">
+            <p class="text-[10px] font-black text-[#9CA3AF] mb-4 uppercase tracking-[0.2em]">Maintenance Only</p>
+            <div class="space-y-3 text-xs text-[#4A5D52]">
+                <a href="#" class="flex items-center justify-between p-2 hover:bg-[#F4F7F5] rounded-md transition">
+                    <span>Admin Panel</span>
+                    <i class="fas fa-arrow-right text-[8px]"></i>
+                </a>
+                <a href="#" class="flex items-center justify-between p-2 hover:bg-[#F4F7F5] rounded-md transition">
+                    <span>Donation Logs</span>
+                    <i class="fas fa-arrow-right text-[8px]"></i>
+                </a>
+            </div>
+        </div>
+    </div> -->
+
+    <script>
+        function toggleFaq(element) {
+            const allItems = document.querySelectorAll('.faq-item');
+            allItems.forEach(item => {
+                if (item !== element && item.classList.contains('active')) {
+                    item.classList.remove('active');
+                }
+            });
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
