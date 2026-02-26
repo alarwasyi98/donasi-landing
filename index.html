@@ -303,7 +303,7 @@
                                     class="text-xs font-normal text-[#9CA3AF]">/anak</span></p>
                         </div>
                         <div class="p-3 bg-[#F4F7F5] rounded-lg border border-[#E5EBE7]">
-                            <p class="text-[10px] uppercase text-[#4A5D52] mb-1">Takjil Premium</p>
+                            <p class="text-[10px] uppercase text-[#4A5D52] mb-1">Takjil Istimewa</p>
                             <p class="financial-data font-bold text-[#0F4A2A]">Rp10.000 <span
                                     class="text-xs font-normal text-[#9CA3AF]">/anak</span></p>
                         </div>
@@ -358,45 +358,82 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="py-24 bg-white/50">
-        <div class="max-w-3xl mx-auto px-6 faq-container">
-            <h2 class="text-2xl font-bold text-[#0F4A2A] text-center mb-12">Informasi Bantuan</h2>
-            <div class="space-y-4">
+    <!-- FAQ - Aligned Left with Description -->
+    <section id="faq" class="py-24 bg-white/50 border-t border-[#E5EBE7]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="mb-12 text-left">
+                <h2 class="text-2xl lg:text-3xl font-bold text-[#0F4A2A] mb-2">Informasi & FAQ</h2>
+                <p class="text-[#4A5D52]">Segala hal yang perlu Anda ketahui tentang penyaluran donasi Ramadan.</p>
+            </div>
+
+            <div class="grid gap-4 max-w-7xl mx-auto">
                 <!-- FAQ Item 1 -->
-                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer h-auto" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-5">
-                        <span class="text-sm md:text-base">Bagaimana cara konfirmasi donasi?</span>
-                        <i class="fas fa-plus text-[10px] text-[#9CA3AF] transition-transform duration-300"></i>
+                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer w-full h-auto"
+                    onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-6">
+                        <span class="text-sm md:text-lg">Bagaimana cara konfirmasi donasi?</span>
+                        <i class="fas fa-plus text-lg text-[#F59E0B] transition-transform"></i>
                     </div>
-                    <div class="faq-answer px-5 pb-5">
-                        <p class="text-sm text-[#4A5D52] leading-relaxed">Setelah transfer, Anda cukup klik tombol
-                            konfirmasi WA yang tersedia di dasbor konfirmasi. Tim kami akan memvalidasi dalam <span
-                                class="text-[#0D9488] font-semibold">1x24 jam</span> dan mengirimkan e-Struk digital.
-                        </p>
+                    <div class="faq-answer px-6 pb-6 text-sm md:text-base text-[#4A5D52] leading-relaxed">
+                        Anda dapat melakukan konfirmasi otomatis melalui WhatsApp dengan menyertakan bukti transfer.
+                        Klik tombol "Konfirmasi" pada dasbor donasi setelah Anda menyelesaikan pembayaran. Tim kami akan
+                        memvalidasi dalam 1x24 jam.
                     </div>
                 </div>
+
                 <!-- FAQ Item 2 -->
-                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer h-auto" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-5">
-                        <span class="text-sm md:text-base">Dapatkah saya berdonasi non-tunai?</span>
-                        <i class="fas fa-plus text-[10px] text-[#9CA3AF] transition-transform duration-300"></i>
+                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer w-full h-auto"
+                    onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-6">
+                        <span class="text-sm md:text-lg">Apa saja metode pembayaran yang tersedia?</span>
+                        <i class="fas fa-plus text-lg text-[#F59E0B] transition-transform"></i>
                     </div>
-                    <div class="faq-answer px-5 pb-5">
-                        <p class="text-sm text-[#4A5D52] leading-relaxed">Tentu. Kami menerima donasi berupa barang
-                            layak pakai, beras, atau bahan pangan lainnya langsung ke alamat pesantren di Cipayung,
-                            Jakarta Timur.</p>
+                    <div class="faq-answer px-6 pb-6 text-sm md:text-base text-[#4A5D52] leading-relaxed">
+                        Kami menerima donasi melalui transfer antar bank (BSI, Mandiri, BCA), serta berbagai dompet
+                        digital seperti QRIS, GoPay, dan OVO untuk memudahkan sedekah harian Anda.
                     </div>
                 </div>
+
                 <!-- FAQ Item 3 -->
-                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer h-auto" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-5">
-                        <span class="text-sm md:text-base">Apakah donasi saya bisa diatasnamakan keluarga?</span>
-                        <i class="fas fa-plus text-[10px] text-[#9CA3AF] transition-transform duration-300"></i>
+                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer w-full h-auto"
+                    onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-6">
+                        <span class="text-sm md:text-lg">Kapan laporan penyaluran dikirimkan?</span>
+                        <i class="fas fa-plus text-lg text-[#F59E0B] transition-transform"></i>
                     </div>
-                    <div class="faq-answer px-5 pb-5">
-                        <p class="text-sm text-[#4A5D52] leading-relaxed">Bisa. Pada saat konfirmasi, Anda dapat
-                            mencantumkan nama pemberi donasi (Misal: Fulan bin Fulan) untuk didoakan bersama oleh para
-                            santri saat ifthar.</p>
+                    <div class="faq-answer px-6 pb-6 text-sm md:text-base text-[#4A5D52] leading-relaxed">
+                        Transparansi adalah prioritas kami. Laporan harian kegiatan ifthar akan diunggah di Instagram,
+                        sementara laporan komprehensif (dokumentasi & rincian dana) akan dikirimkan ke email atau
+                        WhatsApp Anda setiap hari Jumat selama bulan Ramadan.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer w-full h-auto"
+                    onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-6">
+                        <span class="text-sm md:text-lg">Apakah saya bisa berkunjung langsung ke Pesantren?</span>
+                        <i class="fas fa-plus text-lg text-[#F59E0B] transition-transform"></i>
+                    </div>
+                    <div class="faq-answer px-6 pb-6 text-sm md:text-base text-[#4A5D52] leading-relaxed">
+                        Tentu saja. Kami sangat menyambut kehadiran para donatur di asrama kami di Munjul, Cipayung.
+                        Anda dapat melihat langsung proses pembinaan santri dan penyaluran paket buka puasa. Silakan
+                        hubungi admin untuk pengaturan jadwal kunjungan.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer w-full h-auto"
+                    onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-[#0F4A2A] p-6">
+                        <span class="text-sm md:text-lg">Dapatkah saya berdonasi atas nama keluarga yang sudah
+                            tiada?</span>
+                        <i class="fas fa-plus text-lg text-[#F59E0B] transition-transform"></i>
+                    </div>
+                    <div class="faq-answer px-6 pb-6 text-sm md:text-base text-[#4A5D52] leading-relaxed">
+                        Bisa. Anda dapat mencantumkan nama almarhum/almarhumah di catatan donasi. Nama tersebut akan
+                        kami sertakan dalam doa bersama para santri penghafal Al-Qur'an sebelum waktu berbuka puasa
+                        tiba.
                     </div>
                 </div>
             </div>
