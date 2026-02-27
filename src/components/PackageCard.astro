@@ -1,0 +1,95 @@
+---
+import type { DonationPackage } from '../data/packages';
+
+interface Props {
+  pkg: DonationPackage;
+}
+
+const { pkg } = Astro.props;
+const isFeatured = pkg.featured === true;
+---
+
+<div
+  class:list={[
+    'card-luxury h-full',
+    { '!bg-[#0F4A2A] !border-none text-white': isFeatured },
+  ]}
+>
+  <span class="text-[11px] font-bold text-[#F59E0B] uppercase tracking-widest mb-2">
+    {pkg.category}
+  </span>
+
+  <h4
+    class:list={[
+      'text-lg font-bold mb-4',
+      { 'text-[#0F4A2A]': !isFeatured },
+    ]}
+  >
+    {pkg.title}
+  </h4>
+
+  {/* Sub-items for multi-tier packages (e.g. Buka Puasa) */}
+  {pkg.subItems && (
+    <div class="space-y-4 flex-grow">
+      {pkg.subItems.map((item) => (
+        <div class="p-3 bg-[#F4F7F5] rounded-lg border border-[#E5EBE7]">
+          <p class="text-[10px] uppercase text-[#4A5D52] mb-1">{item.label}</p>
+          <p class="financial-data font-bold text-[#0F4A2A]">
+            {item.price}{' '}
+            <span class="text-xs font-normal text-[#9CA3AF]">{item.unit}</span>
+          </p>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {/* Description for single-price packages */}
+  {pkg.description && !pkg.subItems && (
+    <p
+      class:list={[
+        'text-sm mb-6 leading-relaxed flex-grow',
+        isFeatured ? 'text-white/70' : 'text-[#4A5D52]',
+      ]}
+    >
+      {pkg.description}
+    </p>
+  )}
+
+  {/* Price display */}
+  {pkg.price && (
+    <div class="mb-6">
+      <p
+        class:list={[
+          'financial-data text-xl font-bold',
+          isFeatured ? 'text-[#F59E0B]' : 'text-[#0F4A2A]',
+        ]}
+      >
+        {pkg.price}
+      </p>
+      {pkg.priceLabel && (
+        <p
+          class:list={[
+            'text-[10px] uppercase',
+            isFeatured ? 'text-white/50' : 'text-[#9CA3AF]',
+          ]}
+        >
+          {pkg.priceLabel}
+        </p>
+      )}
+    </div>
+  )}
+
+  {/* CTA Button */}
+  {isFeatured ? (
+    <a href={pkg.ctaHref} class="btn-primary !bg-[#F59E0B] !text-[#0F4A2A] w-full mt-auto">
+      {pkg.ctaText}
+    </a>
+  ) : (
+    <a href={pkg.ctaHref} class:list={[
+      'btn-secondary w-full',
+      pkg.subItems ? 'mt-6' : 'mt-auto',
+    ]}>
+      {pkg.ctaText}
+    </a>
+  )}
+</div>

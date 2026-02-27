@@ -1,0 +1,83 @@
+---
+import { siteData } from "../data/siteData";
+import heroImage from "../images/jumbotron.webp";
+
+const { hero, stats, assets, socialLinks } = siteData;
+---
+
+<header class="hero-section text-white relative overflow-hidden">
+  <div
+    class="max-w-7xl mx-auto px-6 lg:px-12 py-20 lg:py-32 grid lg:grid-cols-2 gap-12 items-center"
+  >
+    <!-- Content -->
+    <div class="relative z-10">
+      <div
+        class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3 py-1 rounded-md mb-6 border border-white/10"
+      >
+        <span class="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse"></span>
+        <span
+          class="text-[11px] font-medium uppercase tracking-widest text-white/80"
+        >
+          {hero.badge}
+        </span>
+      </div>
+
+      <h1 class="text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+        {hero.title}
+        <br />
+        <span class="text-[#F59E0B]">{hero.titleHighlight}</span>
+        {hero.titleSuffix}
+      </h1>
+
+      <p class="text-lg text-white/70 mb-10 max-w-xl leading-relaxed">
+        {hero.subtitle}
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a
+          href="#packages"
+          class="btn-primary !bg-[#F59E0B] !text-[#0F4A2A] !h-14 px-8 text-base"
+        >
+          {hero.ctaPrimary}
+        </a>
+        <a
+          href={socialLinks.whatsapp}
+          class="btn-secondary !text-white !border-white/20 !h-14 px-8 text-base hover:!bg-white/10"
+        >
+          {hero.ctaSecondary}
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Image + Stat Card -->
+    <div class="hidden lg:block relative">
+      <div
+        class="aspect-square rounded-2xl overflow-hidden border border-white/5 shadow-2xl"
+      >
+        <img
+          src={heroImage.src}
+          alt="Santri Berdoa"
+          class="w-full h-full object-cover"
+          loading="eager"
+          width={heroImage.width}
+          height={heroImage.height}
+        />
+      </div>
+      <div class="absolute -bottom-6 -left-6 card-luxury p-6 w-64 h-auto">
+        <p class="text-[11px] font-medium text-[#4A5D52] uppercase mb-2">
+          Total Santri Binaan
+        </p>
+        <p class="text-2xl font-bold text-[#0F4A2A]">
+          {stats.totalSantri} Anak
+        </p>
+        <div class="progress-bar mt-4">
+          <div
+            class="progress-indicator"
+            style={`width: ${stats.progressPercent}%`}
+          >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

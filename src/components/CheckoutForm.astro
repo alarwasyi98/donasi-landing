@@ -1,0 +1,138 @@
+---
+// CheckoutForm.astro — Form data donatur
+---
+
+<div class="card-luxury" id="checkout-form">
+  <h3 class="checkout-section-label">Data Donatur</h3>
+
+  <!-- Anonim toggle -->
+  <div class="flex items-center gap-2 mb-4 pb-4 border-b border-[#E5EBE7]">
+    <input
+      type="checkbox"
+      id="anonim"
+      name="anonim"
+      class="checkout-checkbox"
+    />
+    <label for="anonim" class="text-sm text-[#4A5D52] cursor-pointer select-none">
+      Donasi sebagai <strong class="text-[#0F4A2A]">Hamba Allah</strong> (anonim)
+    </label>
+  </div>
+
+  <!-- Nama Lengkap -->
+  <div class="mb-4" id="nama-field">
+    <label for="nama" class="checkout-field-label">
+      Nama Lengkap <span class="text-[#E11D48]">*</span>
+    </label>
+    <input
+      type="text"
+      id="nama"
+      name="nama"
+      placeholder="Masukkan nama lengkap Anda"
+      class="checkout-input"
+      required
+      minlength="3"
+    />
+    <p class="checkout-error hidden" id="nama-error">Nama minimal 3 karakter</p>
+  </div>
+
+  <!-- Nomor WhatsApp -->
+  <div class="mb-4">
+    <label for="telp" class="checkout-field-label">
+      Nomor WhatsApp <span class="text-[#E11D48]">*</span>
+    </label>
+    <div class="relative">
+      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-[#9CA3AF]">
+        <i class="fab fa-whatsapp text-[#10B981]"></i>
+      </span>
+      <input
+        type="tel"
+        id="telp"
+        name="telp"
+        placeholder="0812-3456-7890"
+        class="checkout-input !pl-9"
+        required
+        pattern="^08[0-9]{8,12}$"
+      />
+    </div>
+    <p class="checkout-error hidden" id="telp-error">Format: 08xx (10-14 digit)</p>
+  </div>
+
+  <!-- Catatan -->
+  <div>
+    <label for="catatan" class="checkout-field-label">
+      Catatan <span class="text-[#9CA3AF] font-normal">(Opsional)</span>
+    </label>
+    <textarea
+      id="catatan"
+      name="catatan"
+      rows="3"
+      maxlength="200"
+      placeholder="Semoga bermanfaat untuk para santri..."
+      class="checkout-input !h-auto resize-none"
+    ></textarea>
+    <p class="text-[11px] text-[#9CA3AF] text-right mt-1">
+      <span id="catatan-count">0</span>/200
+    </p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const anonimCheckbox = document.getElementById('anonim') as HTMLInputElement;
+    const namaField = document.getElementById('nama-field') as HTMLElement;
+    const namaInput = document.getElementById('nama') as HTMLInputElement;
+    const telpInput = document.getElementById('telp') as HTMLInputElement;
+    const catatanInput = document.getElementById('catatan') as HTMLTextAreaElement;
+    const catatanCount = document.getElementById('catatan-count') as HTMLElement;
+
+    // Anonim toggle
+    anonimCheckbox.addEventListener('change', () => {
+      if (anonimCheckbox.checked) {
+        namaField.classList.add('opacity-40', 'pointer-events-none');
+        namaInput.value = 'Hamba Allah';
+        namaInput.removeAttribute('required');
+      } else {
+        namaField.classList.remove('opacity-40', 'pointer-events-none');
+        namaInput.value = '';
+        namaInput.setAttribute('required', '');
+        namaInput.focus();
+      }
+    });
+
+    // Auto-format phone number
+    telpInput.addEventListener('input', (e) => {
+      let val = (e.target as HTMLInputElement).value.replace(/\D/g, '');
+      if (val.length > 14) val = val.slice(0, 14);
+      (e.target as HTMLInputElement).value = val;
+    });
+
+    // Character count for catatan
+    catatanInput.addEventListener('input', () => {
+      catatanCount.textContent = String(catatanInput.value.length);
+    });
+
+    // Inline validation
+    namaInput.addEventListener('blur', () => {
+      const error = document.getElementById('nama-error')!;
+      if (namaInput.value.length > 0 && namaInput.value.length < 3) {
+        error.classList.remove('hidden');
+        namaInput.classList.add('!border-[#E11D48]');
+      } else {
+        error.classList.add('hidden');
+        namaInput.classList.remove('!border-[#E11D48]');
+      }
+    });
+
+    telpInput.addEventListener('blur', () => {
+      const error = document.getElementById('telp-error')!;
+      const valid = /^08[0-9]{8,12}$/.test(telpInput.value);
+      if (telpInput.value.length > 0 && !valid) {
+        error.classList.remove('hidden');
+        telpInput.classList.add('!border-[#E11D48]');
+      } else {
+        error.classList.add('hidden');
+        telpInput.classList.remove('!border-[#E11D48]');
+      }
+    });
+  });
+</script>

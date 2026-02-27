@@ -1,0 +1,35 @@
+---
+import { siteData } from "../data/siteData";
+import logoImage from "../images/ulul-ilmi-logo-alt-colored.png";
+---
+
+<nav class="sticky top-0 z-40 bg-white border-b border-[#E5EBE7] px-6 lg:px-12">
+  <div class="max-w-7xl mx-auto flex justify-between h-20 items-center">
+    <!-- Brand Logo -->
+    <a href="#" class="flex items-center" aria-label={siteData.name}>
+      <img
+        src={logoImage.src}
+        alt={`${siteData.name} Logo`}
+        class="h-12 md:h-12 w-auto object-contain transition-all"
+        width={logoImage.width}
+        height={logoImage.height}
+      />
+    </a>
+
+    <!-- Navigation Menu -->
+    <div class="flex items-center space-x-8">
+      <div
+        class="hidden md:flex space-x-8 text-[14px] font-medium text-[#4A5D52]"
+      >
+        {
+          siteData.navLinks.map((link) => (
+            <a href={link.href} class="hover:text-[#0F4A2A] transition">
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+      <a href="#packages" class="btn-primary shadow-sm"> Donasi </a>
+    </div>
+  </div>
+</nav>

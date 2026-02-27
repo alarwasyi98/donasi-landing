@@ -1,0 +1,25 @@
+---
+import PackageCard from './PackageCard.astro';
+import { packages } from '../data/packages';
+---
+
+<section id="packages" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <h2 class="text-2xl lg:text-3xl font-bold text-[#0F4A2A] mb-2">
+          Pilihan Paket Kebaikan
+        </h2>
+        <p class="text-[#4A5D52]">
+          Semua paket disalurkan langsung untuk memuliakan santri yatim.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {packages.map((pkg) => (
+        <PackageCard pkg={pkg} />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+/* ============================================
+   Design System Tokens (from style-guide.md)
+   ============================================ */
+:root {
+  /* Primary Colors */
+  --primary-pine: #0F4A2A;
+  --primary-white: #FFFFFF;
+
+  /* Secondary Colors */
+  --secondary-sage: #4A5D52;
+  --mint-whisper: #F4F7F5;
+
+  /* Accent Colors */
+  --accent-gold: #F59E0B;
+  --accent-teal: #0D9488;
+
+  /* Functional Colors */
+  --success-emerald: #10B981;
+  --warning-amber: #D97706;
+  --error-crimson: #E11D48;
+  --neutral-gray: #9CA3AF;
+  --dark-moss: #19241E;
+
+  /* Background Colors */
+  --bg-surface: #FFFFFF;
+  --bg-canvas: #EEF2F0;
+  --bg-dark-canvas: #080D0A;
+
+  /* Border */
+  --border-light: #E5EBE7;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--dark-moss);
+}
+
+h1,
+h2,
+h3,
+.financial-data {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================
+   Typography - Quote
+   ============================================ */
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
+}
+
+/* ============================================
+   UI Components - Buttons
+   ============================================ */
+.btn-primary {
+  background-color: var(--primary-pine);
+  color: white;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 200ms ease-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  border: 1px solid var(--secondary-sage);
+  color: var(--primary-pine);
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  background: transparent;
+  transition: all 200ms ease-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: var(--mint-whisper);
+}
+
+/* ============================================
+   UI Components - Cards
+   ============================================ */
+.card-luxury {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 4px rgba(15, 74, 42, 0.04);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-luxury:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(15, 74, 42, 0.08);
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+.hero-section {
+  background: linear-gradient(135deg, #0F4A2A 0%, #19241E 100%);
+  padding: 48px 0;
+}
+
+/* ============================================
+   FAQ Accordion
+   ============================================ */
+.faq-container {
+  min-height: 450px;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  opacity: 1;
+  padding-top: 1rem;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
+/* ============================================
+   Progress Bar
+   ============================================ */
+.progress-bar {
+  height: 6px;
+  background: var(--mint-whisper);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-indicator {
+  height: 100%;
+  background: var(--accent-gold);
+  border-radius: 4px;
+}
+
+/* ============================================
+   Footer Decorative Background Text
+   ============================================ */
+.footer-bg-text {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12vw;
+  font-weight: 800;
+  color: var(--primary-pine);
+  opacity: 0.03;
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 0.8;
+  z-index: 0;
+}
+
+/* ============================================
+   Checkout Page Styles
+   ============================================ */
+#package-selector,
+#checkout-form,
+#bank-info,
+#payment-method {
+  transform: none;
+}
+
+#package-selector:hover,
+#checkout-form:hover,
+#bank-info:hover,
+#payment-method:hover {
+  transform: none;
+  box-shadow: 0 2px 4px rgba(15, 74, 42, 0.04);
+}
+
+.checkout-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary-sage);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.checkout-field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dark-moss);
+  margin-bottom: 4px;
+}
+
+.checkout-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  background: white;
+  color: var(--dark-moss);
+  font-size: 14px;
+  transition: all 200ms ease-out;
+  outline: none;
+}
+
+.checkout-input:focus {
+  border-color: var(--accent-teal);
+  box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.15);
+}
+
+.checkout-input::placeholder {
+  color: var(--neutral-gray);
+}
+
+.checkout-price-box {
+  background: var(--mint-whisper);
+  border-radius: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-light);
+}
+
+.checkout-stepper-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: white;
+  color: var(--secondary-sage);
+  cursor: pointer;
+  transition: all 200ms ease-out;
+}
+
+.checkout-stepper-btn:hover {
+  background: var(--primary-pine);
+  color: white;
+  border-color: var(--primary-pine);
+}
+
+.checkout-qty-input {
+  width: 48px;
+  height: 36px;
+  text-align: center;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--dark-moss);
+  background: white;
+  outline: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.checkout-qty-input::-webkit-outer-spin-button,
+.checkout-qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.checkout-error {
+  color: var(--error-crimson);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.checkout-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  accent-color: var(--primary-pine);
+  cursor: pointer;
+}
+
+.checkout-radio-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+}
+
+.checkout-radio-option:hover {
+  border-color: var(--secondary-sage);
+}
+
+.checkout-radio-active {
+  border-color: var(--primary-pine);
+  background: rgba(15, 74, 42, 0.03);
+}
+
+.checkout-radio-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkout-radio-dot {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--neutral-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease-out;
+}
+
+.checkout-radio-active .checkout-radio-dot {
+  border-color: var(--primary-pine);
+}
+
+.checkout-radio-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: all 200ms ease-out;
+}
+
+.checkout-radio-active .checkout-radio-inner {
+  background: var(--primary-pine);
+}

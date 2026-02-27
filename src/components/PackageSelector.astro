@@ -1,0 +1,155 @@
+---
+import { packages } from '../data/packages';
+
+interface Props {
+  selectedPackageId?: string;
+}
+
+const { selectedPackageId } = Astro.props;
+---
+
+<div class="card-luxury" id="package-selector">
+  <h3 class="checkout-section-label">Paket yang Dipilih</h3>
+
+  <!-- Package Dropdown -->
+  <div class="mb-4">
+    <label for="paket" class="checkout-field-label">Pilih Paket Donasi</label>
+    <select id="paket" name="paket" class="checkout-input" required>
+      {packages.map((pkg) => (
+        <option
+          value={pkg.id}
+          selected={pkg.id === selectedPackageId}
+          data-price={pkg.numericPrice || 0}
+          data-price-label={pkg.price || ''}
+          data-has-subitems={pkg.subItems ? 'true' : 'false'}
+        >
+          {pkg.title}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  <!-- Sub-item selector (for packages with variants like Buka Puasa) -->
+  <div id="subitem-selector" class="mb-4 hidden">
+    <label for="subitem" class="checkout-field-label">Pilih Varian</label>
+    <select id="subitem" name="subitem" class="checkout-input">
+      <!-- Populated dynamically via JS -->
+    </select>
+  </div>
+
+  <!-- Price display -->
+  <div id="price-display" class="checkout-price-box">
+    <span class="text-[11px] font-medium uppercase tracking-wider text-[#4A5D52]">Harga</span>
+    <p class="financial-data text-xl font-bold text-[#0F4A2A]" id="unit-price">Rp0</p>
+  </div>
+
+  <!-- Quantity stepper -->
+  <div class="mt-4">
+    <label class="checkout-field-label">Jumlah Paket</label>
+    <div class="flex items-center gap-3 mt-1">
+      <button type="button" id="qty-dec" class="checkout-stepper-btn" aria-label="Kurangi jumlah">
+        <i class="fas fa-minus text-xs"></i>
+      </button>
+      <input
+        type="number"
+        id="qty"
+        name="qty"
+        value="1"
+        min="1"
+        max="100"
+        class="checkout-qty-input"
+        readonly
+      />
+      <button type="button" id="qty-inc" class="checkout-stepper-btn" aria-label="Tambah jumlah">
+        <i class="fas fa-plus text-xs"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Total -->
+  <div class="mt-4 pt-4 border-t border-[#E5EBE7]">
+    <div class="flex justify-between items-center">
+      <span class="text-sm font-medium text-[#4A5D52]">Total Donasi</span>
+      <p class="financial-data text-xl font-bold text-[#0F4A2A]" id="total-price">Rp0</p>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ packages, selectedPackageId }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const paketSelect = document.getElementById('paket');
+    const subitemSelector = document.getElementById('subitem-selector');
+    const subitemSelect = document.getElementById('subitem');
+    const unitPriceEl = document.getElementById('unit-price');
+    const totalPriceEl = document.getElementById('total-price');
+    const qtyInput = document.getElementById('qty');
+    const qtyDec = document.getElementById('qty-dec');
+    const qtyInc = document.getElementById('qty-inc');
+
+    let currentPrice = 0;
+
+    function formatRupiah(num) {
+      return 'Rp' + num.toLocaleString('id-ID');
+    }
+
+    function updateSubItems(pkgId) {
+      const pkg = packages.find(p => p.id === pkgId);
+      if (pkg && pkg.subItems && pkg.subItems.length > 0) {
+        subitemSelector.classList.remove('hidden');
+        subitemSelect.innerHTML = '';
+        pkg.subItems.forEach((item, i) => {
+          const opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = `${item.label} — ${item.price} ${item.unit}`;
+          opt.dataset.price = item.numericPrice;
+          subitemSelect.appendChild(opt);
+        });
+        currentPrice = pkg.subItems[0].numericPrice;
+      } else {
+        subitemSelector.classList.add('hidden');
+        currentPrice = pkg ? (pkg.numericPrice || 0) : 0;
+      }
+      updateDisplay();
+    }
+
+    function updateDisplay() {
+      unitPriceEl.textContent = formatRupiah(currentPrice);
+      const qty = parseInt(qtyInput.value) || 1;
+      totalPriceEl.textContent = formatRupiah(currentPrice * qty);
+    }
+
+    // Package change
+    paketSelect.addEventListener('change', (e) => {
+      updateSubItems(e.target.value);
+    });
+
+    // Sub-item change
+    subitemSelect.addEventListener('change', (e) => {
+      const opt = e.target.options[e.target.selectedIndex];
+      currentPrice = parseInt(opt.dataset.price) || 0;
+      updateDisplay();
+    });
+
+    // Quantity stepper
+    qtyDec.addEventListener('click', () => {
+      const current = parseInt(qtyInput.value) || 1;
+      if (current > 1) {
+        qtyInput.value = current - 1;
+        updateDisplay();
+      }
+    });
+
+    qtyInc.addEventListener('click', () => {
+      const current = parseInt(qtyInput.value) || 1;
+      if (current < 100) {
+        qtyInput.value = current + 1;
+        updateDisplay();
+      }
+    });
+
+    // Initialize — set dropdown & update display
+    const initialPkg = selectedPackageId || packages[0].id;
+    paketSelect.value = initialPkg;
+    updateSubItems(initialPkg);
+  });
+</script>

@@ -1,0 +1,50 @@
+---
+import FaqItem from './FaqItem.astro';
+import { faqItems } from '../data/faqData';
+---
+
+<section id="faq" class="py-24 bg-white/50 border-t border-[#E5EBE7]">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="mb-12 text-left">
+      <h2 class="text-2xl lg:text-3xl font-bold text-[#0F4A2A] mb-2">
+        Informasi & FAQ
+      </h2>
+      <p class="text-[#4A5D52]">
+        Segala hal yang perlu Anda ketahui tentang penyaluran donasi Ramadan.
+      </p>
+    </div>
+
+    <div class="grid gap-4 max-w-7xl mx-auto">
+      {faqItems.map((item) => (
+        <FaqItem question={item.question} answer={item.answer} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFaq() {
+    const triggers = document.querySelectorAll('.faq-trigger');
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const faqItem = trigger.closest('.faq-item');
+        if (!faqItem) return;
+
+        // Close other open items
+        const allItems = document.querySelectorAll('.faq-item');
+        allItems.forEach((item) => {
+          if (item !== faqItem && item.classList.contains('active')) {
+            item.classList.remove('active');
+          }
+        });
+
+        // Toggle current
+        faqItem.classList.toggle('active');
+      });
+    });
+  }
+
+  // Run on page load and after Astro view transitions
+  document.addEventListener('DOMContentLoaded', initFaq);
+  document.addEventListener('astro:after-swap', initFaq);
+</script>

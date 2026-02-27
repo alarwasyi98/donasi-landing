@@ -1,0 +1,100 @@
+---
+import { primaryAccount } from '../data/bankData';
+---
+
+<div class="card-luxury" id="bank-info">
+  <h3 class="checkout-section-label">Rekening Penerima</h3>
+
+  <div class="bg-[#F4F7F5] rounded-xl p-5 border border-[#E5EBE7]">
+    <!-- Bank header -->
+    <div class="flex items-center gap-3 mb-4">
+      <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center border border-[#E5EBE7] overflow-hidden p-1">
+        <img
+          src={primaryAccount.bankLogoUrl}
+          alt={`Logo ${primaryAccount.bankShortName}`}
+          class="w-full h-full object-contain"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <p class="text-sm font-semibold text-[#0F4A2A]">{primaryAccount.bankName}</p>
+        <p class="text-[11px] uppercase tracking-wider text-[#4A5D52]">{primaryAccount.bankShortName}</p>
+      </div>
+    </div>
+
+    <!-- Account number with copy -->
+    <div class="mb-3">
+      <p class="text-[11px] font-medium uppercase tracking-wider text-[#4A5D52] mb-1">No. Rekening</p>
+      <div class="flex items-center gap-2">
+        <div class="flex-1 bg-white rounded-lg px-4 py-3 border border-[#E5EBE7]">
+          <p class="financial-data text-lg font-bold text-[#0F4A2A] tracking-widest" id="account-number">
+            {primaryAccount.accountNumber.replace(/(.{4})/g, '$1 ').trim()}
+          </p>
+        </div>
+        <button
+          type="button"
+          id="copy-btn"
+          class="flex items-center justify-center w-11 h-11 bg-white rounded-lg border border-[#E5EBE7] hover:bg-[#0F4A2A] hover:text-white hover:border-[#0F4A2A] transition-all duration-200 group"
+          aria-label="Salin nomor rekening"
+          data-account={primaryAccount.accountNumber}
+        >
+          <i class="fas fa-copy text-sm text-[#4A5D52] group-hover:text-white" id="copy-icon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Account holder -->
+    <div>
+      <p class="text-[11px] font-medium uppercase tracking-wider text-[#4A5D52] mb-1">Atas Nama</p>
+      <p class="text-sm font-semibold text-[#0F4A2A]">{primaryAccount.accountHolder}</p>
+    </div>
+  </div>
+
+  <!-- Copy toast -->
+  <div
+    id="copy-toast"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#10B981] text-white px-5 py-2.5 rounded-lg text-sm font-medium shadow-lg flex items-center gap-2 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50"
+  >
+    <i class="fas fa-check-circle"></i>
+    Nomor rekening tersalin!
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const copyBtn = document.getElementById('copy-btn')!;
+    const copyIcon = document.getElementById('copy-icon')!;
+    const copyToast = document.getElementById('copy-toast')!;
+
+    copyBtn.addEventListener('click', async () => {
+      const accountNumber = copyBtn.getAttribute('data-account') || '';
+
+      try {
+        await navigator.clipboard.writeText(accountNumber);
+      } catch {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = accountNumber;
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      }
+
+      // Visual feedback: icon changes to check
+      copyIcon.className = 'fas fa-check text-sm text-[#10B981] group-hover:text-white';
+
+      // Show toast
+      copyToast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+      copyToast.classList.add('opacity-100', 'translate-y-0');
+
+      setTimeout(() => {
+        copyIcon.className = 'fas fa-copy text-sm text-[#4A5D52] group-hover:text-white';
+        copyToast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+        copyToast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2000);
+    });
+  });
+</script>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div class="faq-item card-luxury !p-0 overflow-hidden cursor-pointer w-full h-auto">
+  <div class="faq-trigger flex justify-between items-center font-semibold text-[#0F4A2A] p-6">
+    <span class="text-sm md:text-lg">{question}</span>
+    <i class="fas fa-plus text-lg text-[#F59E0B] transition-transform faq-icon"></i>
+  </div>
+  <div class="faq-answer px-6 pb-6 text-sm md:text-base text-[#4A5D52] leading-relaxed" set:html={answer} />
+</div>

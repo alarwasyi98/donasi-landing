@@ -1,0 +1,38 @@
+---
+const features = [
+  {
+    icon: "fas fa-hand-holding-heart",
+    title: "Kontribusi Nyata",
+    description:
+      "Penyaluran langsung tanpa perantara ke 150 santri yang menetap di asrama kami di Cipayung.",
+  },
+  {
+    icon: "fas fa-star",
+    title: "Kualitas Terbaik",
+    description:
+      "Setiap paket ifthar dan bingkisan dipilih dengan standar kualitas terbaik untuk memuliakan penerima.",
+  },
+  {
+    icon: "fas fa-file-invoice",
+    title: "Transparansi Laporan",
+    description:
+      "Laporan penyaluran yang akuntabel dikirimkan langsung ke WhatsApp pribadi para donatur.",
+  },
+];
+---
+
+<section id="about" class="py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="grid md:grid-cols-3 gap-8">
+      {features.map((feature) => (
+        <div class="card-luxury h-full">
+          <div class="w-12 h-12 bg-[#F4F7F5] rounded-lg flex items-center justify-center text-[#0F4A2A] mb-6">
+            <i class={feature.icon}></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#0F4A2A] mb-3">{feature.title}</h3>
+          <p class="text-sm text-[#4A5D52] leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

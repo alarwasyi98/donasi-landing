@@ -1,0 +1,19 @@
+---
+import { siteData } from '../data/siteData';
+
+const { quote } = siteData;
+---
+
+<section class="py-16 bg-white border-b border-[#E5EBE7]">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <p class="quote-text text-[#0F4A2A] text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+      {quote.text}
+    </p>
+    <div class="mt-6 flex flex-col items-center">
+      <div class="w-10 h-1 border-t-2 border-[#F59E0B] mb-2"></div>
+      <span class="text-[11px] font-bold uppercase tracking-[0.3em] text-[#9CA3AF]">
+        {quote.attribution}
+      </span>
+    </div>
+  </div>
+</section>
