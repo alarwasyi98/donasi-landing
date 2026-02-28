@@ -1,0 +1,164 @@
+---
+import type { Page } from 'astro';
+
+interface Donor {
+  name: string;
+  amount: number;
+  lastDonation: string;
+  isAnonymous: boolean;
+}
+
+interface Props {
+  page: Page<Donor>;
+}
+
+const { page } = Astro.props;
+
+function formatRupiah(amount: number): string {
+  return new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  return new Intl.DateTimeFormat('id-ID', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(date);
+}
+
+function getRankBadge(rank: number): string {
+  if (rank === 1) return '🥇';
+  if (rank === 2) return '🥈';
+  if (rank === 3) return '🥉';
+  return `${rank}`;
+}
+
+// Precompute all display data in frontmatter to avoid template operator issues
+const donorRows = page.data.map((donor, index) => {
+  const rank = page.start + index + 1;
+  const isTopThree = rank <= 3;
+  return {
+    rank,
+    isTopThree,
+    badge: getRankBadge(rank),
+    displayName: donor.isAnonymous ? 'Hamba Allah' : donor.name,
+    isAnonymous: donor.isAnonymous,
+    formattedAmount: formatRupiah(donor.amount),
+    formattedDate: formatDate(donor.lastDonation),
+  };
+});
+
+// Generate page numbers for pagination
+function getPageNumbers(currentPage: number, lastPage: number): (number | string)[] {
+  const pages: (number | string)[] = [];
+  if (lastPage <= 5) {
+    for (let i = 1; i <= lastPage; i++) pages.push(i);
+  } else {
+    pages.push(1);
+    if (currentPage > 3) pages.push('...');
+    const start = Math.max(2, currentPage - 1);
+    const end = Math.min(lastPage - 1, currentPage + 1);
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (currentPage < lastPage - 2) pages.push('...');
+    pages.push(lastPage);
+  }
+  return pages;
+}
+
+const pageNumbers = getPageNumbers(page.currentPage, page.lastPage);
+---
+
+<div class="donor-table-wrapper">
+  <!-- Table -->
+  <div class="donor-table-scroll">
+    <table class="donor-table" id="donor-table">
+      <thead>
+        <tr>
+          <th class="donor-th donor-th-rank">Rank</th>
+          <th class="donor-th donor-th-name">Donatur</th>
+          <th class="donor-th donor-th-amount">Jumlah</th>
+          <th class="donor-th donor-th-date">Donasi Terakhir</th>
+        </tr>
+      </thead>
+      <tbody>
+        {donorRows.map((row) => (
+            <tr class:list={["donor-row", { "donor-row-top": row.isTopThree }]}>
+              <td class="donor-td donor-td-rank">
+                <span class:list={["donor-rank", { [`donor-rank-${row.rank}`]: row.isTopThree }]}>
+                  {row.badge}
+                </span>
+              </td>
+              <td class="donor-td donor-td-name">
+                <div class="donor-name-cell">
+                  {row.isAnonymous && <i class="fas fa-user-secret donor-anon-icon" />}
+                  <span class:list={["donor-name", { "donor-name-anon": row.isAnonymous }]}>
+                    {row.displayName}
+                  </span>
+                </div>
+              </td>
+              <td class="donor-td donor-td-amount">
+                <span class="financial-data">{row.formattedAmount}</span>
+              </td>
+              <td class="donor-td donor-td-date">{row.formattedDate}</td>
+            </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  {page.lastPage > 1 && (
+    <nav class="donor-pagination" aria-label="Paginasi daftar donatur">
+      <!-- Previous -->
+      {page.url.prev ? (
+        <a href={page.url.prev} class="donor-page-btn donor-page-nav" aria-label="Halaman sebelumnya">
+          <i class="fas fa-chevron-left" />
+        </a>
+      ) : (
+        <span class="donor-page-btn donor-page-nav donor-page-disabled" aria-disabled="true">
+          <i class="fas fa-chevron-left" />
+        </span>
+      )}
+
+      <!-- Page Numbers -->
+      <div class="donor-page-numbers">
+        {pageNumbers.map((p) =>
+          p === '...' ? (
+            <span class="donor-page-ellipsis">…</span>
+          ) : (
+            <a
+              href={p === 1 ? '/donors/' : `/donors/${p}`}
+              class:list={["donor-page-btn", { "donor-page-active": p === page.currentPage }]}
+              aria-label={`Halaman ${p}`}
+              aria-current={p === page.currentPage ? "page" : undefined}
+            >
+              {p}
+            </a>
+          )
+        )}
+      </div>
+
+      <!-- Next -->
+      {page.url.next ? (
+        <a href={page.url.next} class="donor-page-btn donor-page-nav" aria-label="Halaman berikutnya">
+          <i class="fas fa-chevron-right" />
+        </a>
+      ) : (
+        <span class="donor-page-btn donor-page-nav donor-page-disabled" aria-disabled="true">
+          <i class="fas fa-chevron-right" />
+        </span>
+      )}
+    </nav>
+  )}
+
+  <!-- Summary -->
+  <p class="donor-summary">
+    Menampilkan {page.start + 1}–{page.end + 1} dari {page.total} donatur
+  </p>
+</div>
