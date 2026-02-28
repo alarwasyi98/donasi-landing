@@ -1,11 +1,13 @@
 ---
-import PackageCard from './PackageCard.astro';
-import { packages } from '../data/packages';
+import PackageCard from "./PackageCard.astro";
+import { packages } from "../data/packages";
 ---
 
 <section id="packages" class="py-24 bg-white">
   <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+    >
       <div>
         <h2 class="text-2xl lg:text-3xl font-bold text-[#0F4A2A] mb-2">
           Pilihan Paket Kebaikan
@@ -17,9 +19,21 @@ import { packages } from '../data/packages';
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {packages.map((pkg) => (
-        <PackageCard pkg={pkg} />
-      ))}
+      {packages.map((pkg) => <PackageCard pkg={pkg} />)}
+    </div>
+
+    <!-- Donor List CTA -->
+    <div class="mt-10 text-center">
+      <a
+        href="/donors/"
+        class="inline-flex items-center gap-2 text-sm font-medium text-[#4A5D52] hover:text-[#0F4A2A] transition-colors duration-200 group"
+      >
+        <i class="fas fa-users text-[#F59E0B]"></i>
+        Lihat Daftar Donatur
+        <i
+          class="fas fa-arrow-right text-xs opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+        ></i>
+      </a>
     </div>
   </div>
 </section>
