@@ -17,7 +17,8 @@ import logoImage from "../images/ulul-ilmi-logo-alt-colored.png";
     </a>
 
     <!-- Navigation Menu -->
-    <div class="flex items-center space-x-8">
+    <div class="flex items-center space-x-4 md:space-x-8">
+      <!-- Desktop Links -->
       <div
         class="hidden md:flex space-x-8 text-[14px] font-medium text-[#4A5D52]"
       >
@@ -29,7 +30,77 @@ import logoImage from "../images/ulul-ilmi-logo-alt-colored.png";
           ))
         }
       </div>
+
+      <!-- Donasi Button (always visible) -->
       <a href="#packages" class="btn-primary shadow-sm"> Donasi </a>
+
+      <!-- Hamburger Button (mobile only) -->
+      <button
+        id="hamburger-btn"
+        class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-[#E5EBE7] text-[#4A5D52] hover:bg-[#F4F7F5] transition"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <i id="hamburger-icon" class="fas fa-bars text-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden overflow-hidden transition-all duration-300 ease-out"
+    style="max-height: 0;"
+  >
+    <div class="pb-6 pt-2 space-y-1 border-t border-[#E5EBE7]">
+      {
+        siteData.navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="block px-2 py-3 text-[14px] font-medium text-[#4A5D52] hover:text-[#0F4A2A] hover:bg-[#F4F7F5] rounded-lg transition"
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </div>
   </div>
 </nav>
+
+<script>
+  function initHamburger() {
+    const btn = document.getElementById("hamburger-btn");
+    const menu = document.getElementById("mobile-menu");
+    const icon = document.getElementById("hamburger-icon");
+    if (!btn || !menu || !icon) return;
+
+    function closeMenu() {
+      menu!.style.maxHeight = "0px";
+      btn!.setAttribute("aria-expanded", "false");
+      icon!.classList.remove("fa-times");
+      icon!.classList.add("fa-bars");
+    }
+
+    btn.addEventListener("click", () => {
+      const isOpen =
+        menu.style.maxHeight !== "0px" && menu.style.maxHeight !== "";
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        menu.style.maxHeight = menu.scrollHeight + "px";
+        btn.setAttribute("aria-expanded", "true");
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-times");
+      }
+    });
+
+    // Close menu when clicking a link
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initHamburger);
+  document.addEventListener("astro:after-swap", initHamburger);
+</script>
