@@ -1,10 +1,22 @@
-# Astro Starter Kit: Minimal
+# Landing Page for Donation Program
 
-```sh
-npm create astro@latest -- --template minimal
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open [http://localhost:4321](http://localhost:4321) with your browser to see the result.
+
+You can start editing the page by modifying `src/pages/index.astro`. The page auto-updates as you edit the file.
 
 ## 🚀 Project Structure
 
