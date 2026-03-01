@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PackageSelector from '../components/PackageSelector.astro';
-import CheckoutForm from '../components/CheckoutForm.astro';
-import BankInfo from '../components/BankInfo.astro';
-import { siteData } from '../data/siteData';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PackageSelector from "../components/PackageSelector.astro";
+import CheckoutForm from "../components/CheckoutForm.astro";
+import BankInfo from "../components/BankInfo.astro";
+import { siteData } from "../data/siteData";
 
 // Get selected package from query params
-const paket = Astro.url.searchParams.get('paket') || '';
+const paket = Astro.url.searchParams.get("paket") || "";
 ---
 
 <BaseLayout
@@ -15,7 +15,9 @@ const paket = Astro.url.searchParams.get('paket') || '';
 >
   <!-- Checkout Navbar -->
   <nav class="bg-white border-b border-[#E5EBE7] sticky top-0 z-40">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <div
+      class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between"
+    >
       <a
         href="/"
         class="flex items-center gap-2 text-sm font-medium text-[#4A5D52] hover:text-[#0F4A2A] transition-colors duration-200"
@@ -38,21 +40,25 @@ const paket = Astro.url.searchParams.get('paket') || '';
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
     <!-- Page Header -->
     <div class="text-center mb-8 sm:mb-10">
-      <div class="inline-flex items-center gap-2 bg-[#F4F7F5] text-[#0F4A2A] text-[11px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-4 border border-[#E5EBE7]">
+      <div
+        class="inline-flex items-center gap-2 bg-[#F4F7F5] text-[#0F4A2A] text-[11px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-4 border border-[#E5EBE7]"
+      >
         <i class="fas fa-hand-holding-heart text-[#F59E0B]"></i>
         Konfirmasi Donasi
       </div>
-      <h1 class="text-2xl sm:text-[28px] font-bold text-[#0F4A2A] leading-tight tracking-tight">
+      <h1
+        class="text-2xl sm:text-[28px] font-bold text-[#0F4A2A] leading-tight tracking-tight"
+      >
         Sempurnakan Donasi Anda
       </h1>
       <p class="text-sm sm:text-base text-[#4A5D52] mt-2 max-w-md mx-auto">
-        Lengkapi data berikut untuk menyempurnakan donasi Anda bagi santri yatim & penghafal Al-Qur'an
+        Lengkapi data berikut untuk menyempurnakan donasi Anda bagi santri yatim
+        & penghafal Al-Qur'an
       </p>
     </div>
 
     <!-- Two-column layout (desktop) / single column (mobile) -->
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 items-start">
-
       <!-- LEFT COLUMN: Form (3/5 on desktop) -->
       <div class="lg:col-span-3 space-y-6">
         <PackageSelector selectedPackageId={paket} />
@@ -61,13 +67,15 @@ const paket = Astro.url.searchParams.get('paket') || '';
 
       <!-- RIGHT COLUMN: Payment info + actions (2/5 on desktop) -->
       <div class="lg:col-span-2 space-y-6 lg:sticky lg:top-24">
-
         <!-- Payment method -->
         <div class="card-luxury" id="payment-method">
           <h3 class="checkout-section-label">Metode Pembayaran</h3>
 
           <div class="space-y-3">
-            <label class="checkout-radio-option checkout-radio-active" id="radio-transfer">
+            <label
+              class="checkout-radio-option checkout-radio-active"
+              id="radio-transfer"
+            >
               <input
                 type="radio"
                 name="metode"
@@ -76,12 +84,18 @@ const paket = Astro.url.searchParams.get('paket') || '';
                 checked
               />
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-[#F4F7F5] flex items-center justify-center">
+                <div
+                  class="w-9 h-9 rounded-lg bg-[#F4F7F5] flex items-center justify-center"
+                >
                   <i class="fas fa-university text-[#0F4A2A] text-sm"></i>
                 </div>
                 <div>
-                  <p class="text-sm font-medium text-[#0F4A2A]">Transfer Bank</p>
-                  <p class="text-[11px] text-[#9CA3AF]">BSI, BCA, Mandiri, dll.</p>
+                  <p class="text-sm font-medium text-[#0F4A2A]">
+                    Transfer Bank
+                  </p>
+                  <p class="text-[11px] text-[#9CA3AF]">
+                    BSI, BCA, Mandiri, dll.
+                  </p>
                 </div>
               </div>
               <div class="checkout-radio-dot">
@@ -97,12 +111,18 @@ const paket = Astro.url.searchParams.get('paket') || '';
                 class="checkout-radio-input"
               />
               <div class="flex items-center gap-3">
-                <div class="w-9 h-9 rounded-lg bg-[#F4F7F5] flex items-center justify-center">
+                <div
+                  class="w-9 h-9 rounded-lg bg-[#F4F7F5] flex items-center justify-center"
+                >
                   <i class="fas fa-qrcode text-[#0D9488] text-sm"></i>
                 </div>
                 <div>
-                  <p class="text-sm font-medium text-[#0F4A2A]">E-Wallet / QRIS</p>
-                  <p class="text-[11px] text-[#9CA3AF]">GoPay, OVO, DANA, ShopeePay</p>
+                  <p class="text-sm font-medium text-[#0F4A2A]">
+                    E-Wallet / QRIS
+                  </p>
+                  <p class="text-[11px] text-[#9CA3AF]">
+                    GoPay, OVO, DANA, ShopeePay
+                  </p>
                 </div>
               </div>
               <div class="checkout-radio-dot">
@@ -114,6 +134,20 @@ const paket = Astro.url.searchParams.get('paket') || '';
 
         <!-- Bank Info -->
         <BankInfo />
+
+        <!-- Warning Alert -->
+        <div
+          class="bg-[#FFFBEB] border border-[#FDE68A] rounded-xl p-4 flex gap-3 text-[#D97706]"
+        >
+          <i class="fas fa-exclamation-circle text-lg shrink-0 mt-0.5"></i>
+          <p class="text-[13px] leading-relaxed">
+            <strong class="block font-semibold mb-0.5"
+              >Siapkan Bukti Transfer sebelum Konfirmasi</strong
+            >
+            Pastikan Anda telah melakukan transfer dan menyimpan buktinya untuk dikirimkan
+            via WhatsApp.
+          </p>
+        </div>
 
         <!-- Action Buttons -->
         <div class="space-y-3">
@@ -157,73 +191,90 @@ const paket = Astro.url.searchParams.get('paket') || '';
 </BaseLayout>
 
 <script>
-  import { packages } from '../data/packages';
-  import { siteData } from '../data/siteData';
+  import { packages } from "../data/packages";
+  import { siteData } from "../data/siteData";
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const btnKonfirmasi = document.getElementById('btn-konfirmasi')!;
-    const btnKunjungan = document.getElementById('btn-kunjungan')!;
-    const radioTransfer = document.getElementById('radio-transfer')!;
-    const radioEwallet = document.getElementById('radio-ewallet')!;
+  document.addEventListener("DOMContentLoaded", () => {
+    const btnKonfirmasi = document.getElementById("btn-konfirmasi")!;
+    const btnKunjungan = document.getElementById("btn-kunjungan")!;
+    const radioTransfer = document.getElementById("radio-transfer")!;
+    const radioEwallet = document.getElementById("radio-ewallet")!;
 
     // Radio styling
     document.querySelectorAll('input[name="metode"]').forEach((radio) => {
-      radio.addEventListener('change', (e) => {
-        document.querySelectorAll('.checkout-radio-option').forEach(el => {
-          el.classList.remove('checkout-radio-active');
+      radio.addEventListener("change", (e) => {
+        document.querySelectorAll(".checkout-radio-option").forEach((el) => {
+          el.classList.remove("checkout-radio-active");
         });
         const target = e.target as HTMLInputElement;
-        target.closest('.checkout-radio-option')?.classList.add('checkout-radio-active');
+        target
+          .closest(".checkout-radio-option")
+          ?.classList.add("checkout-radio-active");
       });
     });
 
     // Gather form data helper
     function getFormData() {
-      const paketSelect = document.getElementById('paket') as HTMLSelectElement;
-      const selectedPkg = packages.find(p => p.id === paketSelect.value);
-      const subitemSelect = document.getElementById('subitem') as HTMLSelectElement;
-      const qty = parseInt((document.getElementById('qty') as HTMLInputElement).value) || 1;
-      const nama = (document.getElementById('nama') as HTMLInputElement).value;
-      const telp = (document.getElementById('telp') as HTMLInputElement).value;
-      const catatan = (document.getElementById('catatan') as HTMLTextAreaElement).value;
-      const metode = (document.querySelector('input[name="metode"]:checked') as HTMLInputElement)?.value || 'transfer';
-      const totalEl = document.getElementById('total-price')!;
+      const paketSelect = document.getElementById("paket") as HTMLSelectElement;
+      const selectedPkg = packages.find((p) => p.id === paketSelect.value);
+      const subitemSelect = document.getElementById(
+        "subitem",
+      ) as HTMLSelectElement;
+      const qty =
+        parseInt((document.getElementById("qty") as HTMLInputElement).value) ||
+        1;
+      const nama = (document.getElementById("nama") as HTMLInputElement).value;
+      const telp = (document.getElementById("telp") as HTMLInputElement).value;
+      const catatan = (
+        document.getElementById("catatan") as HTMLTextAreaElement
+      ).value;
+      const metode =
+        (
+          document.querySelector(
+            'input[name="metode"]:checked',
+          ) as HTMLInputElement
+        )?.value || "transfer";
+      const totalEl = document.getElementById("total-price")!;
 
-      let varianText = '';
-      if (selectedPkg?.subItems && subitemSelect && subitemSelect.value !== '') {
+      let varianText = "";
+      if (
+        selectedPkg?.subItems &&
+        subitemSelect &&
+        subitemSelect.value !== ""
+      ) {
         const idx = parseInt(subitemSelect.value);
-        varianText = selectedPkg.subItems[idx]?.label || '';
+        varianText = selectedPkg.subItems[idx]?.label || "";
       }
 
       return {
-        paketTitle: selectedPkg?.title || '',
+        paketTitle: selectedPkg?.title || "",
         varian: varianText,
         qty,
-        total: totalEl.textContent || 'Rp0',
-        nama: nama || 'Hamba Allah',
+        total: totalEl.textContent || "Rp0",
+        nama: nama || "Hamba Allah",
         telp,
         catatan,
-        metode: metode === 'transfer' ? 'Transfer Bank' : 'E-Wallet / QRIS',
+        metode: metode === "transfer" ? "Transfer Bank" : "E-Wallet / QRIS",
       };
     }
 
     // Validate form
     function validateForm(): boolean {
-      const nama = document.getElementById('nama') as HTMLInputElement;
-      const telp = document.getElementById('telp') as HTMLInputElement;
-      const anonim = document.getElementById('anonim') as HTMLInputElement;
+      const nama = document.getElementById("nama") as HTMLInputElement;
+      const telp = document.getElementById("telp") as HTMLInputElement;
+      const anonim = document.getElementById("anonim") as HTMLInputElement;
 
       let valid = true;
 
       if (!anonim.checked && nama.value.length < 3) {
-        nama.classList.add('!border-[#E11D48]');
-        document.getElementById('nama-error')?.classList.remove('hidden');
+        nama.classList.add("!border-[#E11D48]");
+        document.getElementById("nama-error")?.classList.remove("hidden");
         valid = false;
       }
 
       if (!/^08[0-9]{8,12}$/.test(telp.value)) {
-        telp.classList.add('!border-[#E11D48]');
-        document.getElementById('telp-error')?.classList.remove('hidden');
+        telp.classList.add("!border-[#E11D48]");
+        document.getElementById("telp-error")?.classList.remove("hidden");
         valid = false;
       }
 
@@ -231,14 +282,14 @@ const paket = Astro.url.searchParams.get('paket') || '';
     }
 
     // Generate WhatsApp URL
-    function generateWhatsAppUrl(type: 'konfirmasi' | 'kunjungan'): string {
+    function generateWhatsAppUrl(type: "konfirmasi" | "kunjungan"): string {
       const data = getFormData();
-      const phone = siteData.contact.phone.replace(/\D/g, '');
-      const phoneInternational = '62' + phone.slice(1);
+      const phone = siteData.contact.phone.replace(/\D/g, "");
+      const phoneInternational = "62" + phone.slice(1);
 
-      let message = '';
+      let message = "";
 
-      if (type === 'konfirmasi') {
+      if (type === "konfirmasi") {
         message = `Assalamu'alaikum, saya ingin mengkonfirmasi donasi:\n\n`;
         message += `📋 Paket: ${data.paketTitle}`;
         if (data.varian) message += ` (${data.varian})`;
@@ -261,14 +312,14 @@ const paket = Astro.url.searchParams.get('paket') || '';
     }
 
     // Button handlers
-    btnKonfirmasi.addEventListener('click', () => {
+    btnKonfirmasi.addEventListener("click", () => {
       if (!validateForm()) return;
-      window.open(generateWhatsAppUrl('konfirmasi'), '_blank');
+      window.open(generateWhatsAppUrl("konfirmasi"), "_blank");
     });
 
-    btnKunjungan.addEventListener('click', () => {
+    btnKunjungan.addEventListener("click", () => {
       if (!validateForm()) return;
-      window.open(generateWhatsAppUrl('kunjungan'), '_blank');
+      window.open(generateWhatsAppUrl("kunjungan"), "_blank");
     });
   });
 </script>
