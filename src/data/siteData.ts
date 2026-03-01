@@ -53,6 +53,7 @@ export const siteData = {
   navLinks: [
     { label: "Program", href: "#about" },
     { label: "Donasi", href: "#packages" },
+    { label: "Donatur", href: "/donors/" },
     { label: "Bantuan", href: "#faq" },
   ],
 
